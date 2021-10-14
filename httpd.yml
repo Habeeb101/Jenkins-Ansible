@@ -1,1 +1,19 @@
-
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Install Httpd
+      yum:
+       name: httpd
+       state: present
+    - name: Start Httpd
+      service:
+       name: httpd
+       state: started
+       enabled: ture
+    - name: Copy index file
+      copy:
+        src: index.html
+        dest: /var/www/html/
+        
+...
